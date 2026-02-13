@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acne AI - Medical Grade Scanner</title>
+    <meta name="description" content="AI-powered face scanning and acne analysis with medical-grade validation">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-512.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icons/icon-512.svg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Acne AI">
+
     <link rel="stylesheet" href="style.css">
 
     <!-- Face API (Load via CDN) -->
@@ -12,6 +23,17 @@
 
     <!-- Main Controller (Module) -->
     <script type="module" src="js/scan_controller.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('[PWA] Service Worker registered', reg.scope))
+                    .catch(err => console.warn('[PWA] SW registration failed:', err));
+            });
+        }
+    </script>
 </head>
 
 <body>
