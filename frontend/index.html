@@ -29,8 +29,8 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./service-worker.js')
-                    .then(reg => console.log('[PWA] Service Worker registered', reg.scope))
-                    .catch(err => console.warn('[PWA] SW registration failed:', err));
+                    .then(reg => console.log('[PWA] SW registered', reg.scope))
+                    .catch(err => console.warn('[PWA] SW failed:', err));
             });
         }
     </script>
@@ -68,44 +68,68 @@
         </div>
     </div>
 
-    <!-- ==================== SCREEN 2: MENU ==================== -->
-    <div class="screen" id="menu-screen">
-        <div class="container glass-panel menu-container">
-            <h2>Choose Scan Method</h2>
-            <p class="subtitle">Select how you want to analyze your skin</p>
+    <!-- ==================== SCREEN 2: HOME (Chatbot + Top Nav) ==================== -->
+    <div class="screen" id="home-screen">
 
-            <div class="menu-cards">
-                <div class="menu-card" id="btn-open-scanner">
-                    <div class="card-icon">📷</div>
-                    <h3>Scan Face</h3>
-                    <p>Use your camera for real-time face scanning with AI validation</p>
-                    <span class="card-badge">Live</span>
-                </div>
+        <!-- Top Navigation Bar -->
+        <div class="top-nav">
+            <div class="nav-brand">🔬 Acne AI</div>
+            <div class="nav-actions">
+                <button class="nav-btn" id="btn-open-scanner">
+                    <span class="nav-icon">📷</span>
+                    <span>Scan Face</span>
+                </button>
+                <button class="nav-btn" id="btn-open-upload">
+                    <span class="nav-icon">📤</span>
+                    <span>Upload</span>
+                </button>
+                <button class="nav-btn nav-logout" id="btn-logout">
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
 
-                <div class="menu-card" id="btn-open-upload">
-                    <div class="card-icon">📤</div>
-                    <h3>Upload Photo</h3>
-                    <p>Upload an existing photo for instant acne analysis</p>
-                    <span class="card-badge">Quick</span>
+        <!-- Chatbot Area -->
+        <div class="chat-area">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome message -->
+                <div class="chat-message bot">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-bubble">
+                        <p>Hi! I'm your <strong>Acne AI Assistant</strong>. I can help you with:</p>
+                        <ul>
+                            <li>🔍 Understanding different types of acne</li>
+                            <li>💊 Skincare routine recommendations</li>
+                            <li>📷 Use <strong>Scan Face</strong> or <strong>Upload</strong> above to analyze your skin
+                            </li>
+                        </ul>
+                        <p>Ask me anything about skincare!</p>
+                    </div>
                 </div>
             </div>
 
-            <button class="btn-logout" id="btn-logout">Log Out</button>
+            <!-- Chat Input -->
+            <div class="chat-input-area">
+                <div class="chat-input-wrapper glass-panel">
+                    <input type="text" id="chat-input" placeholder="Ask about skincare, acne types, treatments..."
+                        autocomplete="off">
+                    <button id="btn-send" class="btn-send">
+                        <span>➤</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- ==================== SCREEN 3: SCANNER ==================== -->
     <div class="screen" id="scanner-screen">
-        <!-- Back Button -->
         <button class="btn-back" id="btn-back-scanner">← Back</button>
 
-        <!-- Warning Banner (Top) -->
         <div id="warning-banner" class="warning-banner hidden">
             <span id="warning-message">Initializing...</span>
         </div>
 
         <div class="main-content">
-            <!-- Scanner Area -->
             <div class="scanner-area">
                 <div class="camera-wrapper">
                     <video id="camera-feed" autoplay playsinline muted></video>
@@ -113,7 +137,6 @@
                 </div>
             </div>
 
-            <!-- Side Panel (Validation Status) -->
             <div class="validation-panel glass-panel">
                 <h3>Scan Readiness</h3>
                 <div class="check-list">
@@ -147,7 +170,6 @@
                     </div>
                 </div>
 
-                <!-- Brightness Meter -->
                 <div class="brightness-section">
                     <span class="label">Brightness</span>
                     <div class="meter-bar">
@@ -155,7 +177,6 @@
                     </div>
                 </div>
 
-                <!-- Tips -->
                 <div class="tips-section">
                     <h4>💡 Tips</h4>
                     <ul>
@@ -165,11 +186,8 @@
                     </ul>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="action-buttons">
-                    <button id="btn-scan" class="btn-primary disabled" disabled>
-                        Scanning...
-                    </button>
+                    <button id="btn-scan" class="btn-primary disabled" disabled>Scanning...</button>
                 </div>
             </div>
         </div>
@@ -177,14 +195,12 @@
 
     <!-- ==================== SCREEN 4: UPLOAD ==================== -->
     <div class="screen" id="upload-screen">
-        <!-- Back Button -->
         <button class="btn-back" id="btn-back-upload">← Back</button>
 
         <div class="upload-container glass-panel">
             <h2>Upload Photo</h2>
             <p class="subtitle">Select a clear, well-lit photo of your face</p>
 
-            <!-- Drop Zone -->
             <div class="drop-zone" id="drop-zone">
                 <div class="drop-icon">📸</div>
                 <p>Drag & drop a photo here</p>
@@ -193,7 +209,6 @@
                 <input type="file" id="file-input" accept="image/*" capture="user" hidden>
             </div>
 
-            <!-- Preview & Results (hidden until image selected) -->
             <div class="upload-preview hidden" id="upload-preview">
                 <div class="preview-image-wrapper">
                     <img id="preview-img" alt="Uploaded photo">
