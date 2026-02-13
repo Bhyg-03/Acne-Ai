@@ -1,4 +1,4 @@
-const CACHE_NAME = 'acne-ai-v1';
+const CACHE_NAME = 'acne-ai-v2';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -23,11 +23,11 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('[SW] Caching app shell');
+            console.log('[SW] Caching app shell v2');
             return cache.addAll(ASSETS_TO_CACHE);
         })
     );
-    self.skipWaiting();
+    self.skipWaiting(); // Immediately activate new SW
 });
 
 // Activate — clean up old caches
@@ -40,32 +40,46 @@ self.addEventListener('activate', (event) => {
             );
         })
     );
-    self.clients.claim();
+    self.clients.claim(); // Take over all pages immediately
 });
 
-// Fetch — serve from cache, fallback to network
+// Fetch — network-first for HTML/JS/CSS, cache-first for models & static assets
 self.addEventListener('fetch', (event) => {
-    // Skip non-GET requests
     if (event.request.method !== 'GET') return;
 
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            if (cachedResponse) {
-                return cachedResponse;
-            }
-            return fetch(event.request).then((networkResponse) => {
-                // Cache new resources dynamically (like the face-api CDN)
+    const url = new URL(event.request.url);
+    const isAppFile = url.pathname.endsWith('.html') ||
+        url.pathname.endsWith('.css') ||
+        url.pathname.endsWith('.js') ||
+        url.pathname === '/' ||
+        url.pathname.endsWith('/');
+
+    if (isAppFile) {
+        // Network-first for app files (always get latest)
+        event.respondWith(
+            fetch(event.request).then((networkResponse) => {
                 if (networkResponse && networkResponse.status === 200) {
-                    const responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, responseClone);
-                    });
+                    const clone = networkResponse.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
                 }
                 return networkResponse;
-            });
-        }).catch(() => {
-            // Offline fallback
-            return caches.match('./index.html');
-        })
-    );
+            }).catch(() => {
+                return caches.match(event.request);
+            })
+        );
+    } else {
+        // Cache-first for models & static assets
+        event.respondWith(
+            caches.match(event.request).then((cached) => {
+                if (cached) return cached;
+                return fetch(event.request).then((networkResponse) => {
+                    if (networkResponse && networkResponse.status === 200) {
+                        const clone = networkResponse.clone();
+                        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                    }
+                    return networkResponse;
+                });
+            }).catch(() => caches.match('./index.html'))
+        );
+    }
 });
