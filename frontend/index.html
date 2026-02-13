@@ -45,8 +45,59 @@
         <div class="blob"></div>
     </div>
 
-    <!-- Scanner Container -->
-    <div class="scanner-container">
+    <!-- ==================== SCREEN 1: LOGIN ==================== -->
+    <div class="screen active" id="login-screen">
+        <div class="container glass-panel">
+            <div class="logo-section">
+                <div class="logo-icon">🔬</div>
+                <h1>Acne AI</h1>
+                <p class="subtitle">Medical-Grade Skin Analysis</p>
+            </div>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 2: MENU ==================== -->
+    <div class="screen" id="menu-screen">
+        <div class="container glass-panel menu-container">
+            <h2>Choose Scan Method</h2>
+            <p class="subtitle">Select how you want to analyze your skin</p>
+
+            <div class="menu-cards">
+                <div class="menu-card" id="btn-open-scanner">
+                    <div class="card-icon">📷</div>
+                    <h3>Scan Face</h3>
+                    <p>Use your camera for real-time face scanning with AI validation</p>
+                    <span class="card-badge">Live</span>
+                </div>
+
+                <div class="menu-card" id="btn-open-upload">
+                    <div class="card-icon">📤</div>
+                    <h3>Upload Photo</h3>
+                    <p>Upload an existing photo for instant acne analysis</p>
+                    <span class="card-badge">Quick</span>
+                </div>
+            </div>
+
+            <button class="btn-logout" id="btn-logout">Log Out</button>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 3: SCANNER ==================== -->
+    <div class="screen" id="scanner-screen">
+        <!-- Back Button -->
+        <button class="btn-back" id="btn-back-scanner">← Back</button>
 
         <!-- Warning Banner (Top) -->
         <div id="warning-banner" class="warning-banner hidden">
@@ -119,8 +170,57 @@
                     <button id="btn-scan" class="btn-primary disabled" disabled>
                         Scanning...
                     </button>
-                    <!-- <button id="btn-upload" class="btn-secondary">Upload Photo</button> -->
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 4: UPLOAD ==================== -->
+    <div class="screen" id="upload-screen">
+        <!-- Back Button -->
+        <button class="btn-back" id="btn-back-upload">← Back</button>
+
+        <div class="upload-container glass-panel">
+            <h2>Upload Photo</h2>
+            <p class="subtitle">Select a clear, well-lit photo of your face</p>
+
+            <!-- Drop Zone -->
+            <div class="drop-zone" id="drop-zone">
+                <div class="drop-icon">📸</div>
+                <p>Drag & drop a photo here</p>
+                <span class="drop-or">or</span>
+                <button class="btn-primary btn-choose" id="btn-choose-file">Choose Photo</button>
+                <input type="file" id="file-input" accept="image/*" capture="user" hidden>
+            </div>
+
+            <!-- Preview & Results (hidden until image selected) -->
+            <div class="upload-preview hidden" id="upload-preview">
+                <div class="preview-image-wrapper">
+                    <img id="preview-img" alt="Uploaded photo">
+                    <canvas id="upload-overlay"></canvas>
+                </div>
+
+                <div class="upload-results" id="upload-results">
+                    <h3>Analysis Results</h3>
+                    <div class="result-item">
+                        <span class="result-label">Face Detected</span>
+                        <span class="result-value" id="upload-face">⏳</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Lighting</span>
+                        <span class="result-value" id="upload-lighting">⏳</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Clarity</span>
+                        <span class="result-value" id="upload-clarity">⏳</span>
+                    </div>
+                    <div class="result-item acne-result">
+                        <span class="result-label">Acne Scan</span>
+                        <span class="result-value" id="upload-acne">⏳ Analyzing...</span>
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="btn-reupload">Upload Another</button>
             </div>
         </div>
     </div>
