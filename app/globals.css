@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  /* Medical/Health Theme Colors */
+  /* Primary: Calming Blue */
+  --primary: #4A90D9;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary: Teal/Green for Health */
+  --secondary: #00BFA6;
+  --secondary-foreground: #FFFFFF;
+
+  /* Accent: Red/Coral for Alerts/Severity */
+  --destructive: #FF6B6B;
+  --destructive-foreground: #FFFFFF;
+
+  /* Backgrounds */
+  --background: #F5F7FA;
+  --foreground: #1E293B;
+
+  /* Cards/Surfaces */
+  --card: #FFFFFF;
+  --card-foreground: #1E293B;
+  --popover: #FFFFFF;
+  --popover-foreground: #1E293B;
+
+  /* Borders/Inputs */
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #4A90D9;
+
+  /* Muted */
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+
+  /* Radius */
+  --radius: 0.75rem; /* 12px rounded corners */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  /* Font Family - using system fonts for now, can add Google Fonts later */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0F172A;
+    --foreground: #F8FAFC;
+    --card: #1E293B;
+    --card-foreground: #F8FAFC;
+    --popover: #1E293B;
+    --popover-foreground: #F8FAFC;
+    --primary: #60A5FA;
+    --primary-foreground: #FFFFFF;
+    --secondary: #2DD4BF;
+    --secondary-foreground: #FFFFFF;
+    --muted: #334155;
+    --muted-foreground: #94A3B8;
+    --border: #334155;
+    --input: #334155;
+    --ring: #60A5FA;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}

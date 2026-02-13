@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acne AI - Live Analysis</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Acne AI Diagnostic Tool</h1>
+
+        <div class="main-content">
+            <div class="camera-section">
+                <video id="webcam" autoplay playsinline width="224" height="224"></video>
+                <div class="controls">
+                    <button id="start-btn">Start Camera</button>
+                    <button id="analyze-btn" disabled>Analyze Skin</button>
+                </div>
+            </div>
+
+            <div class="results-section hidden" id="results">
+                <h2>Diagnostic Report</h2>
+                <div id="loading" class="hidden">Running AI Analysis...</div>
+
+                <div id="report-content">
+                    <div class="result-card">
+                        <h3>Primary Diagnosis</h3>
+                        <p id="diagnosis-type">--</p>
+                        <div class="confidence-bar">
+                            <div id="confidence-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="confidence-text">0% Confidence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/model_loader.js"></script>
+    <script src="js/acne_detector.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

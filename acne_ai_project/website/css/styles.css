@@ -1,0 +1,84 @@
+body {
+    background-color: #0f172a;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.camera-section {
+    position: relative;
+    border: 2px solid #6366f1;
+    border-radius: 20px;
+    overflow: hidden;
+    background: black;
+}
+
+video {
+    display: block;
+    transform: scaleX(-1);
+}
+
+.controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #6366f1;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:disabled {
+    background: #475569;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+}
+
+.confidence-bar {
+    background: #334155;
+    height: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+#confidence-fill {
+    height: 100%;
+    background: #22c55e;
+    width: 0%;
+    transition: width 0.5s;
+}

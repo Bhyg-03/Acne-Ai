@@ -1,0 +1,84 @@
+{
+    "Blackheads": {
+        "description": "Small dark spots caused by oxidized oil and dead skin cells in open pores.",
+        "severity": "Mild to Moderate",
+        "treatments": [
+            "Use salicylic acid (BHA) 2% cleanser",
+            "Apply clay mask once weekly",
+            "Use non-comedogenic moisturizer",
+            "Try retinoid products (adapalene 0.1%)",
+            "Use oil-free sunscreen",
+            "Avoid pore-clogging ingredients"
+        ]
+    },
+    "Whiteheads": {
+        "description": "Small white bumps caused by trapped oil and skin cells in closed pores.",
+        "severity": "Mild to Moderate",
+        "treatments": [
+            "Use benzoyl peroxide 2.5-5%",
+            "Apply AHA exfoliant (glycolic acid 5-10%)",
+            "Use lightweight gel moisturizer",
+            "Avoid heavy creams and oils",
+            "Gentle cleansing twice daily"
+        ]
+    },
+    "Papules": {
+        "description": "Small red or pink inflamed bumps without a visible pus tip.",
+        "severity": "Moderate",
+        "treatments": [
+            "Benzoyl peroxide spot treatment",
+            "Niacinamide serum (10%)",
+            "Gentle fragrance-free cleanser",
+            "Anti-inflammatory ingredients (centella, aloe)",
+            "Do not pick or squeeze",
+            "If persistent, see dermatologist"
+        ]
+    },
+    "Pustules": {
+        "description": "Red bumps with a white or yellow pus-filled tip.",
+        "severity": "Moderate",
+        "treatments": [
+            "Benzoyl peroxide 5% + salicylic acid",
+            "Warm compress to reduce inflammation",
+            "Tea tree oil (diluted to 5%)",
+            "Zinc supplements may help",
+            "Avoid touching face",
+            "Consider prescription topical antibiotics"
+        ]
+    },
+    "Nodules": {
+        "description": "Large, hard, painful lumps deep under the skin.",
+        "severity": "Severe",
+        "treatments": [
+            "MUST see dermatologist",
+            "Prescription oral antibiotics likely needed",
+            "Do NOT attempt to pop or squeeze",
+            "Apply ice to reduce swelling and pain",
+            "Prescription retinoids may be needed",
+            "Hormonal therapy for hormonal acne"
+        ]
+    },
+    "Cystic Acne": {
+        "description": "Large, pus-filled, deep, and painful lumps. High risk of scarring.",
+        "severity": "Very Severe",
+        "treatments": [
+            "URGENT: See dermatologist",
+            "Isotretinoin (Accutane) may be prescribed",
+            "Cortisone injections by dermatologist",
+            "Do NOT drain or pop",
+            "Apply ice for pain relief",
+            "Prescription treatment is essential",
+            "May need hormonal evaluation"
+        ]
+    },
+    "Clear Skin": {
+        "description": "Healthy skin with no visible active acne.",
+        "severity": "None",
+        "treatments": [
+            "Maintain gentle cleansing routine",
+            "Use daily sunscreen (SPF 30+)",
+            "Moisturize to maintain skin barrier",
+            "Stay hydrated and maintain healthy diet"
+        ]
+    }
+}

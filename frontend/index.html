@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acne AI - Medical Grade Scanner</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Face API (Load via CDN) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+    <!-- Main Controller (Module) -->
+    <script type="module" src="js/scan_controller.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background-blobs">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+
+    <!-- Scanner Container -->
+    <div class="scanner-container">
+
+        <!-- Warning Banner (Top) -->
+        <div id="warning-banner" class="warning-banner hidden">
+            <span id="warning-message">Initializing...</span>
+        </div>
+
+        <div class="main-content">
+            <!-- Scanner Area -->
+            <div class="scanner-area">
+                <div class="camera-wrapper">
+                    <video id="camera-feed" autoplay playsinline muted></video>
+                    <canvas id="overlay"></canvas>
+                </div>
+            </div>
+
+            <!-- Side Panel (Validation Status) -->
+            <div class="validation-panel glass-panel">
+                <h3>Scan Readiness</h3>
+                <div class="check-list">
+                    <div class="check-item" id="check-face">
+                        <span class="check-icon">⏳</span>
+                        <div class="check-details">
+                            <span class="check-label">Face Detected</span>
+                            <span class="check-status">Waiting...</span>
+                        </div>
+                    </div>
+                    <div class="check-item" id="check-position">
+                        <span class="check-icon">⏳</span>
+                        <div class="check-details">
+                            <span class="check-label">Position</span>
+                            <span class="check-status">Waiting...</span>
+                        </div>
+                    </div>
+                    <div class="check-item" id="check-lighting">
+                        <span class="check-icon">⏳</span>
+                        <div class="check-details">
+                            <span class="check-label">Lighting</span>
+                            <span class="check-status">Waiting...</span>
+                        </div>
+                    </div>
+                    <div class="check-item" id="check-clarity">
+                        <span class="check-icon">⏳</span>
+                        <div class="check-details">
+                            <span class="check-label">Clarity</span>
+                            <span class="check-status">Waiting...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brightness Meter -->
+                <div class="brightness-section">
+                    <span class="label">Brightness</span>
+                    <div class="meter-bar">
+                        <div id="brightness-fill" class="meter-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Tips -->
+                <div class="tips-section">
+                    <h4>💡 Tips</h4>
+                    <ul>
+                        <li>Face a window for even light</li>
+                        <li>Remove glasses/masks</li>
+                        <li>Hold phone steady</li>
+                    </ul>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="btn-scan" class="btn-primary disabled" disabled>
+                        Scanning...
+                    </button>
+                    <!-- <button id="btn-upload" class="btn-secondary">Upload Photo</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
