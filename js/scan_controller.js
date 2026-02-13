@@ -96,7 +96,7 @@ class ScanController {
         const faceResult = await this.faceValidator.validate(this.video, this.canvas);
 
         // c. Quality
-        const qualityResult = this.qualityValidator.validate(imageData);
+        const qualityResult = this.qualityValidator.validate(imageData, this.video.videoWidth, this.video.videoHeight);
 
         // 3. Update UI
         // Priority: Critical (Lighting/Face) -> Warning -> Success

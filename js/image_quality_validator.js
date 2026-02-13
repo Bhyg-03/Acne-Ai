@@ -4,9 +4,10 @@
  */
 export class ImageQualityValidator {
 
-    validate(imageData) {
-        const width = imageData.width;
-        const height = imageData.height;
+    validate(imageData, actualWidth, actualHeight) {
+        // Use actual video dimensions for resolution check, not the downscaled analysis canvas
+        const width = actualWidth || imageData.width;
+        const height = actualHeight || imageData.height;
 
         const result = {
             isValid: true,
